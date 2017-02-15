@@ -119,6 +119,11 @@ Board.prototype = {
     },
     save: function() {
         localStorage.setItem('board', JSON.stringify(this.data));
+    },
+    destroy: function() {
+        this.boardEl.parentNode.removeChild(this.boardEl);
+        this.boardEl = null;
+        document.onkeyup = null;
     }
 };
 
