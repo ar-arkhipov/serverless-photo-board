@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <title>Photo board</title>
+</head>
+<body>
+    <nav id="topbar">
+        <button class="btn btn-login">Login with Google</button>
+        <img src="" class="avatar">
+        <span class="username">User Name</span>
+        <button class="btn btn-logout">Logout</button>
+    </nav>
+    <aside id="sidebar">
+        <ul class="user-list"></ul>
+    </aside>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "",
+            authDomain: "",
+            databaseURL: "",
+            storageBucket: "",
+            messagingSenderId: ""
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/topbar.js"></script>
+    <script src="js/user-list.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/image-service.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
