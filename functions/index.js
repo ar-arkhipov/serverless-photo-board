@@ -3,18 +3,18 @@ const nodemailer = require('nodemailer');
 const vision = require('@google-cloud/vision')();
 const gcs = require('@google-cloud/storage')();
 
-exports.sendHelloEmail = functions.database.ref('/users/{userId}').onCreate(event => {
-    const data = event.data.val();
+exports.sendHelloEmail = functions.database.ref('/users/{userId}').onCreate((snapshot, context) => {
+    const data = snapshot.val();
     const transport = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'email-here',
+            user: 'web200ok@gmail.com',
             pass: functions.config().email.password
         }
     });
 
     const mailOptions = {
-        from: 'Photoboard <email-here>',
+        from: 'Photoboard WEB200CONF',
         to: data.email,
         subject: 'Hello, dear ' + data.displayName,
         text: 'Thanks you for joining awesome photo-board!'
@@ -27,9 +27,8 @@ exports.sendHelloEmail = functions.database.ref('/users/{userId}').onCreate(even
     });
 });
 
-exports.checkImage = functions.storage.object().onChange(event => {
-    const object = event.data;
-    // Exit if this is a deletion or a deploy event.
+exports.checkImage = functions.storage.object().onFinalize(object => {
+
     if (object.resourceState === 'not_exists' || !object.name) return;
 
     const image = {
